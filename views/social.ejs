@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sosyal Etkileşim Önerileri</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Stil dosyanızı buraya dahil edebilirsiniz -->
+</head>
+<body>
+    <%- include('navbar') %>
+    <div class="container">
+        <h1>Sosyal Etkileşim ve Aktivite Önerileri</h1>
+
+    <!-- Form kısmı -->
+    <form action="/submitForSocial" method="POST">
+        <div>
+            <label for="mood">Ruh Hali (1-5):</label>
+            <input type="number" id="mood" name="mood" min="1" max="5" required>
+        </div>
+        <div>
+            <label for="socialInteraction">Sosyal Etkileşim Durumu:</label>
+            <select id="socialInteraction" name="socialInteraction" required>
+                <option value="">Seçin</option>
+                <option value="low">Düşük</option>
+                <option value="medium">Orta</option>
+                <option value="high">Yüksek</option>
+            </select>
+        </div>
+        <button type="submit">Önerileri Al</button>
+    </form>
+
+    <!-- Sosyal Etkileşim ve Aktivite Önerileri -->
+    <% if (exercises && exercises.socialSuggestions) { %>
+        <h2>Öneriler</h2>
+        <ul>
+            <% exercises.socialSuggestions.forEach(function(suggestion) { %>
+                <li><%= suggestion %></li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>Henüz öneri alınamadı.</p>
+    <% } %>
+    </div>
+    
+</body>
+</html>

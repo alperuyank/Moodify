@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Anasayfa route'u
 app.get('/mood', (req, res) => {
-    res.render('index', { recommendations: null}); // İlk başta recommendations 'null' olarak gönderiyoruz
+    res.render('suggestion', { recommendations: null}); // İlk başta recommendations 'null' olarak gönderiyoruz
 });
 
 app.get('/exercise', (req, res) => {
@@ -27,6 +27,10 @@ app.get('/personal-tips', (req, res) => {
     res.render('personalTips', { tips: null,
       mood: null,
       productivity: null  }); // İlk başta recommendations 'null' olarak gönderiyoruz
+});
+
+app.get('/social-tips', (req, res) => {
+    res.render('social', { exercises: null }); // İlk başta recommendations 'null' olarak gönderiyoruz
 });
 
 // Router'ı uygulamaya dahil et

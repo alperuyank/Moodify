@@ -1,7 +1,7 @@
 // routes/moodRoutes.js
 const express = require('express');
 const router = express.Router();
-const { generateSuggestions, generateExerciseSuggestions, generateDevelopmentTips } = require('../controllers/moodController');
+const { generateSuggestions, generateExerciseSuggestions, generateDevelopmentTips, generateSocialSuggestions } = require('../controllers/moodController');
 
 // Anasayfa route'u
 router.get('/', (req, res) => {
@@ -12,5 +12,6 @@ router.get('/', (req, res) => {
 router.post('/submitMood', generateSuggestions);
 router.post('/submitForExercise', generateExerciseSuggestions);
 router.post('/submitForPDT', generateDevelopmentTips);
+router.post('/submitForSocial', generateSocialSuggestions);
 
 module.exports = router;

@@ -82,7 +82,7 @@ const generateSuggestions = async (req, res) => {
     const jsonResponse = JSON.parse(cleanedResponse);
 
     // Eğer JSON verisi doğru şekilde döndüyse, render et
-    return res.render("index", { recommendations: jsonResponse });
+    return res.render("suggestion", { recommendations: jsonResponse });
   } catch (error) {
     console.error("Gemini API hatası:", error);
     return res
@@ -183,9 +183,51 @@ const generateDevelopmentTips = async (req, res) => {
     }
 };
 
+const generateSocialSuggestions = async (req, res) => {
+    const { mood, socialInteraction } = req.body;
+
+    if (!mood || !socialInteraction) {
+        return res.status(400).json({ error: 'Ruh hali ve sosyal etkileşim durumu gerekli!' });
+    }
+
+    const prompt = `
+    Kullanıcının ruh hali ve durumu:
+    - Ruh Hali(1-5): ${mood}
+    - Sosyal Etkileşim: ${socialInteraction}
+
+    Görev:
+    1. Ruh haline ve sosyal etkileşim seviyesine uygun sosyal etkileşim arttırıcı önerilerde bulun.
+    2. Sosyal etkileşim için uygun aktiviteler öner.
+
+    Lütfen yanıtını aşağıdaki JSON formatında döndür:
+    {
+        "socialSuggestions": [
+            "Öneri 1: Aktivite önerisi veya sosyal etkileşim önerisi.",
+            "Öneri 2: Aktivite önerisi veya sosyal etkileşim önerisi.",
+            "Öneri 3: Aktivite önerisi veya sosyal etkileşim önerisi."
+        ]
+    }
+
+    Yanıtınız sadece bu yapıyı takip etsin ve bu format dışında herhangi bir içerik döndürmesin.
+    `;
+    
+    try {
+        const result = await model.generateContent(prompt);
+        const responseText = result.response.candidates[0].content.parts[0].text.trim();
+        const cleanedResponse = responseText.replace(/```json|```/g, '').trim();
+        const jsonResponse = JSON.parse(cleanedResponse);
+
+        return res.render("social", { exercises: jsonResponse });
+    } catch (error) {
+        console.error('Gemini API hatası:', error);
+        return res.status(500).json({ error: 'Gemini API ile iletişimde hata oluştu.' });
+    }
+};
+
 
 module.exports = {
   generateSuggestions,
   generateExerciseSuggestions,
-  generateDevelopmentTips
+  generateDevelopmentTips,
+  generateSocialSuggestions
 };
