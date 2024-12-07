@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Gelişim Önerileri</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <%- include('navbar') %>
+    <div class="container">
+        <h1>Kişisel Gelişim Önerileri</h1>
+
+    <!-- Form -->
+    <form action="/submitForPDT" method="POST">
+        <label for="mood">Ruh Hali (1-5):</label>
+        <input type="number" id="mood" name="mood" value="<%= mood || '' %>" min="1" max="5" required>
+        <br>
+        
+        <label for="productivity">Üretkenlik:</label>
+        <input type="number" id="productivity" name="productivity" value="<%= productivity || '' %>" min="1" max="5" required>
+        <br>
+
+        <button type="submit">Öneri Al</button>
+    </form>
+
+    
+
+    <% if (tips && tips.length > 0) { %>
+        <h2>Önerileriniz:</h2>
+        <ul>
+            <% tips.forEach(tip => { %>
+                <li><%= tip %></li>
+            <% }) %>
+        </ul>
+    <% } else if (mood && productivity) { %>
+        <p>Öneri bulunamadı. Lütfen tekrar deneyin.</p>
+    <% } %>
+    </div>
+    
+
+</body>
+</html>

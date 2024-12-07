@@ -1,0 +1,219 @@
+/* Genel Ayarlar */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f0f8ff;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Konteyner */
+.container {
+  max-width: 750px;
+  margin: 50px auto;
+  padding: 40px 30px;
+  background: linear-gradient(135deg, #ffffff, #e6f7ff);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Başlıklar */
+h1 {
+  color: #333;
+  font-size: 2.8em;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+h2 {
+  color: #007bff;
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* Öneri Metni */
+p {
+  font-size: 1.3em;
+  color: #555;
+  margin: 15px 0;
+}
+
+p strong {
+  color: #007bff;
+}
+
+/* Öneri Listeleri */
+.recommendation-section {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.recommendation-list {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.recommendation-list li {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.recommendation-list li strong {
+  color: #007bff;
+}
+
+/* Form */
+form {
+  margin-top: 40px;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+  color: #444;
+  text-align: left;
+}
+
+form input,
+form button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0 25px 0;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+/* Form input focus styles */
+form input:focus {
+  border-color: #007bff;
+  background-color: #fff;
+  outline: none;
+}
+
+/* Gönder Butonu */
+form button {
+  background: linear-gradient(90deg, #007bff, #00d4ff);
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover {
+  background: linear-gradient(90deg, #0056b3, #007bff);
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2.2em;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  form {
+    margin-top: 20px;
+  }
+}
+
+/**/
+/* Genel stil ayarları */
+
+/* Navbar stil */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(
+    90deg,
+    #001f33,
+    #004466
+  ); /* Daha koyu mavi ve lacivert */
+
+  padding: 10px 20px;
+  color: white;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 15px;
+}
+
+.navbar a:hover {
+  background: linear-gradient(90deg, #007bff, #00d4ff);
+  transform: scale(1.05); /* Elementi hafifçe büyüt */
+  border-radius: 5px;
+}
+
+/* Navbar logo veya başlık */
+.navbar-brand a {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu li {
+  margin-left: 20px;
+}
+
+.navbar-menu li:first-child {
+  margin-left: 0;
+}
+
+/* Mobil uyumlu navbar (responsive) */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-menu {
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .navbar-menu li {
+    margin-left: 0;
+    width: 100%;
+    text-align: left;
+  }
+
+  .navbar-menu li a {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

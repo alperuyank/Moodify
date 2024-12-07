@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Egzersiz Önerileri</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <%- include('navbar') %>
+
+    <div class="container">
+      <h1>Egzersiz Önerileri</h1>
+
+      <!-- Kullanıcıdan bilgi almak için form -->
+      <form action="/submitForExercise" method="POST">
+        <div class="form-group">
+          <label for="mood">Ruh Hali (1-5):</label>
+          <input type="number" name="mood" min="1" max="5" required />
+        </div>
+
+        <div class="form-group">
+          <label for="physicalCondition">Fiziksel Durum:</label>
+          <input type="text" name="physicalCondition" required />
+        </div>
+
+        <div class="form-group">
+          <label for="stressLevel">Stres Seviyesi (1-5):</label>
+          <input type="number" name="stressLevel" min="1" max="5" />
+        </div>
+
+        <button type="submit">Egzersiz Önerileri Al</button>
+      </form>
+
+      <% if (exercises && exercises.exercises && exercises.exercises.length > 0)
+      { %>
+      <div class="exercise-list">
+        <h2>Önerilen Egzersizler:</h2>
+        <ul>
+          <% exercises.exercises.forEach(exercise => { %>
+          <li class="exercise-item">
+            <h3><%= exercise.exercise %></h3>
+            <p><strong>Süre:</strong> <%= exercise.duration %></p>
+            <p><strong>Yoğunluk:</strong> <%= exercise.intensity %></p>
+          </li>
+          <% }) %>
+        </ul>
+      </div>
+      <% } else if (exercises && exercises.error) { %>
+      <p><%= exercises.error %></p>
+      <% } %>
+    </div>
+  </body>
+</html>

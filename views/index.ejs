@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruh Hali Önerisi</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <%- include('navbar') %>
+
+    <div class="container">
+      <h1>Ruh Hali Önerisi</h1>
+
+      <% if (recommendations && recommendations.intro) { %>
+      <p><strong>Ruh Halinize Göre Öneri:</strong></p>
+      <p><%= recommendations.intro %></p>
+      <% } else { %>
+      <p></p>
+      <% } %> <% if (recommendations) { %>
+
+      <!-- Müzik Önerileri -->
+      <% if (recommendations.music && recommendations.music.length > 0) { %>
+      <div class="recommendation-section">
+        <h2>Müzik Önerileri</h2>
+        <ul class="recommendation-list">
+          <% recommendations.music.forEach(function(item) { %>
+          <li><%= item.song %> - <%= item.artist %></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% } %>
+
+      <!-- Kitap Önerileri -->
+      <% if (recommendations.books && recommendations.books.length > 0) { %>
+      <div class="recommendation-section">
+        <h2>Kitap Önerileri</h2>
+        <ul class="recommendation-list">
+          <% recommendations.books.forEach(function(item) { %>
+          <li><%= item.title %> - <%= item.author %></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% } %>
+
+      <!-- Film Önerileri -->
+      <% if (recommendations.movies && recommendations.movies.length > 0) { %>
+      <div class="recommendation-section">
+        <h2>Film Önerileri</h2>
+        <ul class="recommendation-list">
+          <% recommendations.movies.forEach(function(item) { %>
+          <li><%= item.title %>: <%= item.description %></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% } %>
+
+      <!-- Rahatlama Teknikleri -->
+      <% if (recommendations.relaxationTechniques &&
+      recommendations.relaxationTechniques.length > 0) { %>
+      <div class="recommendation-section">
+        <h2>Rahatlama Teknikleri</h2>
+        <ul class="recommendation-list">
+          <% recommendations.relaxationTechniques.forEach(function(item) { %>
+          <li><%= item %></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% } %> <% } else { %>
+      <p>Henüz bir öneri alınmadı.</p>
+      <% } %>
+
+      <form action="/submitMood" method="POST">
+        <label for="mood">Ruh Halinizi Derecelendirin (1-5):</label>
+        <input type="number" id="mood" name="mood" min="1" max="5" required />
+
+        <label for="physicalCondition">Fiziksel Durum:</label>
+        <input type="text" id="physicalCondition" name="physicalCondition" />
+
+        <label for="stressLevel">Stres Seviyesi:</label>
+        <input type="text" id="stressLevel" name="stressLevel" />
+
+        <label for="socialInteraction">Sosyal Etkileşim:</label>
+        <input type="text" id="socialInteraction" name="socialInteraction" />
+
+        <label for="productivity">Üretkenlik:</label>
+        <input type="text" id="productivity" name="productivity" />
+
+        <button type="submit">Gönder</button>
+      </form>
+    </div>
+  </body>
+</html>
