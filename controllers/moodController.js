@@ -65,7 +65,7 @@ const generateSuggestions = async (req, res) => {
   try {
     const result = await model.generateContent(prompt);
 
-    // Gemini yanıtını log'la, tam yapıyı görmek için
+    // Gemini yanıtını log'la, tam y  apıyı görmek için
     console.log(
       "Gemini API Response:",
       JSON.stringify(result.response, null, 2)
@@ -184,45 +184,54 @@ const generateDevelopmentTips = async (req, res) => {
 };
 
 const generateSocialSuggestions = async (req, res) => {
-    const { mood, socialInteraction } = req.body;
+  const { mood, socialInteraction } = req.body;
 
-    if (!mood || !socialInteraction) {
-        return res.status(400).json({ error: 'Ruh hali ve sosyal etkileşim durumu gerekli!' });
-    }
+  // Eğer kullanıcı bir değer girmezse hata döndürüyoruz
+  if (!mood || !socialInteraction) {
+      return res.status(400).json({ error: 'Ruh hali ve sosyal etkileşim durumu gerekli!' });
+  }
 
-    const prompt = `
-    Kullanıcının ruh hali ve durumu:
-    - Ruh Hali(1-5): ${mood}
-    - Sosyal Etkileşim: ${socialInteraction}
+  const prompt = `
+  Kullanıcının ruh hali ve durumu:
+  - Ruh Hali(1-5): ${mood}
+  - Sosyal Etkileşim: ${socialInteraction}
 
-    Görev:
-    1. Ruh haline ve sosyal etkileşim seviyesine uygun sosyal etkileşim arttırıcı önerilerde bulun.
-    2. Sosyal etkileşim için uygun aktiviteler öner.
+  Görev:
+  1. Ruh haline ve sosyal etkileşim seviyesine uygun sosyal etkileşim arttırıcı önerilerde bulun.
+  2. Sosyal etkileşim için uygun aktiviteler öner.
 
-    Lütfen yanıtını aşağıdaki JSON formatında döndür:
-    {
-        "socialSuggestions": [
-            "Öneri 1: Aktivite önerisi veya sosyal etkileşim önerisi.",
-            "Öneri 2: Aktivite önerisi veya sosyal etkileşim önerisi.",
-            "Öneri 3: Aktivite önerisi veya sosyal etkileşim önerisi."
-        ]
-    }
+  Lütfen yanıtını aşağıdaki JSON formatında döndür:
+  {
+      "socialSuggestions": [
+          "Öneri 1: Aktivite önerisi veya sosyal etkileşim önerisi.",
+          "Öneri 2: Aktivite önerisi veya sosyal etkileşim önerisi.",
+          "Öneri 3: Aktivite önerisi veya sosyal etkileşim önerisi."
+      ]
+  }
 
-    Yanıtınız sadece bu yapıyı takip etsin ve bu format dışında herhangi bir içerik döndürmesin.
-    `;
-    
-    try {
-        const result = await model.generateContent(prompt);
-        const responseText = result.response.candidates[0].content.parts[0].text.trim();
-        const cleanedResponse = responseText.replace(/```json|```/g, '').trim();
-        const jsonResponse = JSON.parse(cleanedResponse);
+  Yanıtınız sadece bu yapıyı takip etsin ve bu format dışında herhangi bir içerik döndürmesin.
+  `;
 
-        return res.render("social", { exercises: jsonResponse });
-    } catch (error) {
-        console.error('Gemini API hatası:', error);
-        return res.status(500).json({ error: 'Gemini API ile iletişimde hata oluştu.' });
-    }
+  try {
+      const result = await model.generateContent(prompt);
+      const responseText = result.response.candidates[0].content.parts[0].text.trim();
+      const cleanedResponse = responseText.replace(/```json|```/g, '').trim();
+      const jsonResponse = JSON.parse(cleanedResponse);
+
+      // Önerileri render ederek gönderiyoruz
+      return res.render("social", { exercises: jsonResponse });
+  } catch (error) {
+      console.error('Gemini API hatası:', error);
+      return res.status(500).json({ error: 'Gemini API ile iletişimde hata oluştu.' });
+  }
 };
+
+
+/**
+ * bir fonskiyon işlevi mood aldığı günden itibaren (kullanıcının moodunu girdiği
+ * günler) tüm ay için bir durum motivasyonlu falan özet, model kendini eğitcek 
+ * diğer fonksiyonlardan daha karışık olsun  
+ */
 
 
 module.exports = {

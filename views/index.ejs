@@ -1,0 +1,22 @@
+<!-- views/social.ejs -->
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sosyal Etkileşim Önerileri</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <%- include('navbar') %>
+    <div class="container">
+        <h1>Fotoğraf Yükle</h1>
+        <!-- Fotoğraf yükleme formu -->
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+          <label for="photo">Fotoğraf Seçin:</label>
+          <input type="file" name="photo" id="photo" required>
+          <button type="submit">Yükle</button>
+        </form>
+    </div>
+  </body>
+</html>

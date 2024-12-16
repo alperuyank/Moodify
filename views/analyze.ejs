@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotoğraf Analiz Sonucu</title>
+</head>
+<body>
+    <%- include('navbar') %>
+    <div class="container">
+        <h1>Fotoğraf Analiz Sonucu</h1>
+        <h2>Yüz İfadesi Analizi</h2>
+        
+        <% if (result && result.expression) { %>
+            <p>Yüz ifadesi: <%= result.expression %></p>
+        <% } else { %>
+            <p>Yüz ifadesi tespit edilemedi.</p>
+        <% } %>
+    
+        <h2>Ekstra Bilgiler</h2>
+        <p>Analiz Sonuçları:</p>
+        <pre><%= JSON.stringify(result, null, 2) %></pre>  <!-- Tüm sonuçları görsel olarak göstermek için -->
+    
+        <a href="/">Yeni bir fotoğraf yükleyin</a>
+    </div>
+    
+</body>
+</html>

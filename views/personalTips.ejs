@@ -26,16 +26,19 @@
 
     
 
-    <% if (tips && tips.length > 0) { %>
-        <h2>Önerileriniz:</h2>
-        <ul>
+    <div class="recommendation-section">
+        <% if (tips && tips.length > 0) { %>
+          <h2>Önerileriniz:</h2>
+          <ul class="recommendation-list">
             <% tips.forEach(tip => { %>
-                <li><%= tip %></li>
+              <li><%= tip %></li>
             <% }) %>
-        </ul>
-    <% } else if (mood && productivity) { %>
-        <p>Öneri bulunamadı. Lütfen tekrar deneyin.</p>
-    <% } %>
+          </ul>
+        <% } else if (mood && productivity) { %>
+          <p>Öneri bulunamadı. Lütfen tekrar deneyin.</p>
+        <% } %>
+      </div>
+      
     </div>
     
 
