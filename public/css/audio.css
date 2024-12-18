@@ -1,0 +1,82 @@
+/* Genel Ayarlar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #4A90E2;
+}
+
+.result-message {
+    background-color: #e1f5fe;
+    border-left: 5px solid #4A90E2;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.result-section {
+    margin-bottom: 20px;
+}
+
+strong {
+    font-size: 1.2rem;
+    color: #4A90E2;
+}
+
+p{
+    font-size: 1rem;
+    color: #555;
+}
+
+.container ul li{
+    font-size: 1rem;
+    color: #555;
+    text-decoration: none;
+}
+
+/* Link Stil */
+a {
+    color: #4A90E2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Tasarım */
+@media (min-width: 768px) {
+    .container {
+        width: 70%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        width: 60%;
+    }
+}

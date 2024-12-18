@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Analysis</title>
+    <link rel="stylesheet" href="css/audio.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Photo Analysis</h1>
+      <!-- Mesaj -->
+      <div class="result-message">
+        <strong>Message:</strong>
+        <p><%= message %></p>
+      </div>
+
+      <!-- Duygu Analizi Sonuçları -->
+      <div class="result-section">
+        <strong>Emotional Analysis:</strong>
+        <ul>
+          <li>Angry: <%= emotion.angry %></li>
+          <li>Disgust: <%= emotion.disgust %></li>
+          <li>Fear: <%= emotion.fear %></li>
+          <li>Happy: <%= emotion.happy %></li>
+          <li>Sad: <%= emotion.sad %></li>
+          <li>Suprised: <%= emotion.surprise %></li>
+          <li>Neutral: <%= emotion.neutral %></li>
+        </ul>
+
+        <p><strong>Emotional State:</strong> <%= dominant_emotion %></p>
+        <p>
+          <strong>Face Confidenceı:</strong> <%= (face_confidence *
+          100).toFixed(2) %>%
+        </p>
+      </div>
+
+      <!-- Mood Tavsiyesi -->
+      <div class="result-section">
+        <strong>Suggestion:</strong>
+        <p><%= mood_advice %></p>
+      </div>
+    </div>
+  </body>
+</html>

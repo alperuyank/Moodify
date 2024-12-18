@@ -1,0 +1,16 @@
+{
+    "sentiment_analysis": {
+        "text": "I'm doing homework today. I'm very upset.",
+        "sentiment": "negative",
+        "confidence_scores": {
+            "positive": 0,
+            "neutral": 0,
+            "negative": 1
+        }
+    },
+    "mood_advice": "Ödevini bitirince kendini ödüllendir!  Sevdiğin bir şey yap, rahatla ve gülümsemeyi unutma! 😊"
+}
+
+I have a presentation today, what will I do? 
+
+I'm very good because, I'm completed my homework.
